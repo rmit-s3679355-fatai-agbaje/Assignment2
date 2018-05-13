@@ -48,11 +48,11 @@ class Driver {
         this.allPeople.add(person);
     }
 
-    public boolean makeFriends(BasePerson person1, BasePerson person2) {
+    public boolean makeFriends(BasePerson person1, BasePerson person2) throws Exception {
         return person1.addFriend(person2) && person2.addFriend(person1);
     }
 
-    public boolean addParents(Child child, BasePerson parent1, BasePerson parent2) {
+    public boolean addParents(Child child, BasePerson parent1, BasePerson parent2) throws Exception {
         return child.setParents(parent1, parent2);
     }
 

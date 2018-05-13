@@ -4,6 +4,7 @@ import com.company.model.Adult;
 import com.company.model.BasePerson;
 import com.company.model.Child;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,10 +13,7 @@ public class MiniNet {
     private static Driver driver;
     private static Scanner input;
 
-    public static void main(String[] args) throws Exception {
-
-        input = new Scanner(System.in);
-        driver = new Driver();
+    private void processConsole() throws Exception{
 
         while (true) {
             showOptions();
@@ -109,6 +107,23 @@ public class MiniNet {
                 System.out.println("Invalid Option. Please select a valid option from 1 - 6");
             }
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        input = new Scanner(System.in);
+        driver = new Driver();
+
+
+        AddPersonForm form = new AddPersonForm(driver);
+
+        JFrame frame = new JFrame("Social Media");
+        frame.setContentPane(form.getPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(480, 360);
+        frame.pack();
+        frame.setVisible(true);
+
     }
 
 
