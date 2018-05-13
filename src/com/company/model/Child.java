@@ -1,6 +1,8 @@
 package com.company.model;
 
 import com.company.UserType;
+import com.company.exception.NotToBeClassmatesException;
+import com.company.exception.NotToBeColleaguesException;
 import com.company.exception.NotToBeFriendsException;
 
 public class Child extends BasePerson {
@@ -13,7 +15,7 @@ public class Child extends BasePerson {
         this.setParents(parents);
     }
 
-    public boolean setParents(BasePerson... parents) {
+    public boolean setParents(BasePerson... parents) throws Exception {
         if (parents.length == 2) {
             for (BasePerson parent : parents) {
                 if (parent.getAge() < 16) {
@@ -65,6 +67,16 @@ public class Child extends BasePerson {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean canHaveColleagues(){
+        return false;
+    }
+
+    @Override
+    public boolean canHaveClassmates(){
+        return true;
     }
 
 }

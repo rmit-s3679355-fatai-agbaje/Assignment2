@@ -2,6 +2,8 @@ package com.company.model;
 
 import com.company.UserType;
 import com.company.exception.NoParentException;
+import com.company.exception.NotToBeClassmatesException;
+import com.company.exception.NotToBeColleaguesException;
 import com.company.exception.TooYoungException;
 
 public class YoungChild extends BasePerson {
@@ -26,8 +28,7 @@ public class YoungChild extends BasePerson {
             parents[1].setPartner(parents[0]);
             this.parents = parents;
             return true;
-        }
-        else {
+        } else {
             throw new NoParentException();
         }
     }
@@ -43,7 +44,7 @@ public class YoungChild extends BasePerson {
 
     @Override
     public void setAge(int age) throws Exception {
-        if (age > 2){
+        if (age > 2) {
             throw new Exception("A child cannot have his/her age greater than 16");
         }
         super.setAge(age);
@@ -52,6 +53,16 @@ public class YoungChild extends BasePerson {
     @Override
     public boolean addFriend(BasePerson person) throws Exception {
         throw new TooYoungException();
+    }
+
+    @Override
+    public boolean canHaveColleagues() {
+        return false;
+    }
+
+    @Override
+    public boolean canHaveClassmates() {
+        return false;
     }
 
 }

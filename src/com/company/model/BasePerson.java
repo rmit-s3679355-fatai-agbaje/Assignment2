@@ -1,9 +1,7 @@
 package com.company.model;
 
 import com.company.UserType;
-import com.company.exception.InvalidStateException;
-import com.company.exception.NoSuchAgeException;
-import com.company.exception.TooYoungException;
+import com.company.exception.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +12,8 @@ public abstract class BasePerson {
     private String id;
     protected List<BasePerson> friends;
     private UserType userType;
+    private List<BasePerson> colleagues;
+    private List<BasePerson> classmates;
     private int age;
 
     private String name;
@@ -31,11 +31,15 @@ public abstract class BasePerson {
 
     public abstract boolean canHaveFriends();
 
-    public boolean hasFriend(BasePerson person){
+    public boolean hasFriend(BasePerson person) {
         return this.friends.contains(person);
     }
 
     public abstract boolean addFriend(BasePerson person) throws Exception;
+
+    public abstract boolean canHaveColleagues();
+
+    public abstract boolean canHaveClassmates();
 
     public void setUserType(UserType userType) {
         this.userType = userType;
@@ -101,13 +105,40 @@ public abstract class BasePerson {
 
     public void setState(String state) throws InvalidStateException {
         String[] validEntries = new String[]{"ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"};
-        if (Arrays.asList(validEntries).indexOf(state) > -1){
+        if (Arrays.asList(validEntries).indexOf(state) > -1) {
             this.state = state;
-        }
-        else {
+        } else {
             throw new InvalidStateException(state);
         }
+    }
 
+    public List<BasePerson> getColleagues() {
+        return colleagues;
+    }
+
+    public boolean addColleague(BasePerson person) throws NotToBeColleaguesException {
+        if (this.canHaveColleagues()) {
+            if (this.colleagues == null)
+                this.colleagues = new ArrayList<>();
+            this.colleagues.add(person);
+            return true;
+        } else {
+            throw new NotToBeColleaguesException();
+        }
+    }
+
+    public List<BasePerson> getClassmates() {
+        return classmates;
+    }
+
+    public boolean addClassmates(BasePerson person) throws NotToBeClassmatesException {
+        if (this.canHaveClassmates()) {
+            if (this.classmates == null)
+                this.classmates = new ArrayList<BasePerson>();
+            this.classmates.add(person);
+            return true;
+        }
+        throw new NotToBeClassmatesException();
     }
 
     public UserType getUserType() {
@@ -116,6 +147,6 @@ public abstract class BasePerson {
 
     @Override
     public String toString() {
-        return String.format("%s \n%s %d \n%s %s\n", "Name: "+name, "Age: ", age, "Status: ", this.status != null ? this.status : "N/A");
+        return String.format("%s \n%s %d \n%s %s\n", "Name: " + name, "Age: ", age, "Status: ", this.status != null ? this.status : "N/A");
     }
 }

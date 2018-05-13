@@ -2,6 +2,8 @@ package com.company.model;
 
 import com.company.UserType;
 import com.company.exception.NoAvailableException;
+import com.company.exception.NotToBeClassmatesException;
+import com.company.exception.NotToBeColleaguesException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,8 +40,7 @@ public class Adult extends BasePerson {
     public void setPartner(Adult partner) throws Exception {
         if (this.partner != null && partner != partner) {
             throw new NoAvailableException();
-        }
-        else {
+        } else {
             this.addFriend(partner);
             this.partner = partner;
         }
@@ -59,6 +60,16 @@ public class Adult extends BasePerson {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean canHaveColleagues() {
+        return true;
+    }
+
+    @Override
+    public boolean canHaveClassmates() {
+        return true;
     }
 
 }

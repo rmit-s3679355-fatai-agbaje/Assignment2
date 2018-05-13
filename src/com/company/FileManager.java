@@ -2,13 +2,14 @@ package com.company;
 
 import com.company.model.Adult;
 import com.company.model.BasePerson;
-import com.company.model.Child;
-import com.company.model.SchoolClass;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is FileManager class responsible for managing the access of data read from the file
+ */
 public class FileManager {
 
     BufferedReader br = null;
@@ -19,8 +20,43 @@ public class FileManager {
         this.people = people;
     }
 
-    public List<BasePerson> readPeopleFile() {
+    /**
+     * This method reads through the relation file named "relations.txt",
+     * processing line by line the content and adjusting the relations of the users individually
+     * @throws Exception thrown from the see processRelationship() method
+     */
+    public void readRelations() throws Exception{
+        String FILENAME = "relations.txt";
+        try {
+            fr = new FileReader(FILENAME);
+            br = new BufferedReader(fr);
 
+            String current;
+
+            while ((current = br.readLine()) != null) {
+                this.processRelationship(current);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null)
+                    br.close();
+                if (fr != null)
+                    fr.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+    }
+
+    /**
+     * This method reads the content of the file "people.txt" and adds valid people to a list
+     * @return the list of people read from the content of the file.
+     * @throws Exception from processing the individual entries
+     */
+    public List<BasePerson> readPeopleFile() throws Exception {
         List<BasePerson> people = new ArrayList<BasePerson>();
         String FILENAME = "people.txt";
         try {
@@ -53,6 +89,12 @@ public class FileManager {
         return people;
     }
 
+    /**
+     *
+     * @param personString a single line of content read from the file
+     * @return the processed Person based on the contents of the string
+     * @throws Exception from potentially inconsistent data coming from the file
+     */
     private BasePerson processSinglePerson(String personString) throws Exception {
 
         String[] splits = personString.split(",");
@@ -79,6 +121,11 @@ public class FileManager {
         return null;
     }
 
+    /**
+     * This method searches through the list of people currently available to our file manager
+     * @param name the full name of the users
+     * @return the user or null if nobody with the @param name exists
+     */
     private BasePerson findPerson(String name) {
         if (this.people != null && this.people.size() > 0) {
             for (BasePerson person : people) {
@@ -89,10 +136,12 @@ public class FileManager {
         return null;
     }
 
-    public SchoolClass getClass(String name){
-
-    }
-
+    /**
+     *
+     * @param entry A single individual entry read from the file
+     * @return true if the relationship was successfully processed or false, if it wasn't
+     * @throws Exception when the
+     */
     public boolean processRelationship(String entry) throws Exception {
         String[] entries = entry.split(",");
         if (entries.length < 3) {
@@ -103,20 +152,18 @@ public class FileManager {
         String second = entries[1];
         String relationship = entries[2];
 
-
         BasePerson firstPerson = this.findPerson(first);
-        BasePerson secondPerson = this.findPerson(first);
+        BasePerson secondPerson = this.findPerson(second);
 
         if (relationship == "friends") {
-            if (firstPerson != null && firstPerson.canHaveFriends() && secondPerson != null && secondPerson.canHaveFriends()){
+            if (firstPerson != null && firstPerson.canHaveFriends() && secondPerson != null && secondPerson.canHaveFriends()) {
                 firstPerson.addFriend(secondPerson);
                 secondPerson.addFriend(firstPerson);
-            }
-            else {
+            } else {
                 return false;
             }
         } else if (relationship == "couple") {
-            if (firstPerson instanceof Adult && secondPerson instanceof Adult){
+            if (firstPerson instanceof Adult && secondPerson instanceof Adult) {
                 Adult firstAdult = (Adult) firstPerson;
                 Adult secondAdult = (Adult) secondPerson;
 
@@ -126,14 +173,17 @@ public class FileManager {
         } else if (relationship == "parent") {
 
 
-
         } else if (relationship == "classmates") {
-
-            SchoolClass schoolClass = getClass("")
-
+            if (firstPerson != null && firstPerson.canHaveClassmates() && secondPerson != null && secondPerson.canHaveClassmates()) {
+                return firstPerson.addClassmates(secondPerson) & secondPerson.addClassmates(firstPerson);
+            }
         } else if (relationship == "colleagues") {
-
+            if (firstPerson != null && firstPerson.canHaveColleagues() && secondPerson != null && secondPerson.canHaveColleagues()) {
+                return firstPerson.addColleague(secondPerson) & secondPerson.addColleague(firstPerson);
+            }
         }
+
+        return false;
     }
 
 
