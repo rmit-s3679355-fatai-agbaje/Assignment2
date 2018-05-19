@@ -14,12 +14,10 @@ public class ViewAllForm extends JPanel {
     private List list;
 
     public ViewAllForm(Driver driver) {
-        this.setBackground(Color.CYAN);
         this.driver = driver;
         list = new List();
         itemsString = new ArrayList<>();
         this.list.setSize(this.getSize());
-        this.list.setBackground(Color.RED);
 
         this.addListContent();
 
