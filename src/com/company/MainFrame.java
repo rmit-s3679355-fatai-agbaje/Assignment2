@@ -3,19 +3,17 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The main Application JFrame
+ */
 public class MainFrame extends JFrame {
 
-    private Driver driver;
-
-
-    public MainFrame(Driver driver) {
+    public MainFrame() {
         super("Social Media");
-        driver = driver;
-
         this.setMenuBar(this.getMenuBar());
     }
 
-    public void run(JPanel panel){
+    public void run(JPanel panel) {
         this.setContentPane(panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(640, 480);
@@ -23,7 +21,6 @@ public class MainFrame extends JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-//        this.pack();
         this.setVisible(true);
     }
 

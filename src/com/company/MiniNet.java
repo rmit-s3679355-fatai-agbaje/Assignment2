@@ -109,8 +109,7 @@ public class MiniNet {
         input = new Scanner(System.in);
         driver = new Driver();
 
-
-        currentContentPanel = new AddPersonForm(driver).getPanel();
+        currentContentPanel = new HomePanel();
 
         MainMenuForm menuPanel = new MainMenuForm(driver);
         menuPanel.attachPersonSelectedListener(person -> {

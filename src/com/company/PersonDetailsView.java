@@ -6,10 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/***
+ * This is the custom JPanel view that displays the details for a selected Person from the list
+ */
 public class PersonDetailsView extends JPanel {
 
     private BasePerson person;
 
+    /**
+     * @param person The person with which this View should be initialized
+     */
     public PersonDetailsView(BasePerson person) {
         super();
         this.person = person;

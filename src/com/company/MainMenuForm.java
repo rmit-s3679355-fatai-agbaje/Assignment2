@@ -5,7 +5,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * A Custom form helper created a GUI Form control with the InteliJ IDEA
+ */
 public class MainMenuForm {
+
     private JPanel mainPanel;
     private JLabel homeLabel;
     private JLabel addPersonLabel;

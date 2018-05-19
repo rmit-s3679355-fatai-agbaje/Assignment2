@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * The custom JPanel for that displays all the users in the application
+ */
 public class ViewAllForm extends JPanel {
 
     private OnPersonSelectedListener listener;
@@ -38,6 +41,10 @@ public class ViewAllForm extends JPanel {
         });
     }
 
+    /**
+     * This is an action listener that is fired when an item is selected from the @java.awt.List
+     * @param listener
+     */
     public void attachListener(OnPersonSelectedListener listener) {
         this.listener = listener;
     }
