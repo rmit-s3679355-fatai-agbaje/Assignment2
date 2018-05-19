@@ -131,7 +131,7 @@ public class MiniNet {
         mainPanel.add(menuPanel.getMainPanel());
         mainPanel.add(currentContentPanel);
 
-        MainFrame frame = new MainFrame(driver);
+        MainFrame frame = new MainFrame();
         frame.run(mainPanel);
     }
 
