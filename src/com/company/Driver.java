@@ -25,7 +25,6 @@ class Driver {
             allPeople.add(aliysa);
             allPeople.add(roland);
             allPeople.add(new Child("David", 12, aliysa, roland));
-
             allPeople.add(new Adult("Daniel", 28));
             allPeople.add(new Adult("Cody", 20));
             allPeople.add(new Adult("Sherlock", 29));

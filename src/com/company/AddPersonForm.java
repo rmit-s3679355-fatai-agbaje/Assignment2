@@ -14,6 +14,8 @@ public class AddPersonForm {
     private JButton saveButton;
     private JTextField ageField;
     private JPanel panel;
+    private JTextField statusField;
+    private JComboBox genderCombox;
 
     public AddPersonForm(Driver driver) {
         this.driver = driver;
@@ -31,6 +33,8 @@ public class AddPersonForm {
 
             if (age > 2) {
                 BasePerson person = new Adult(name, age, null);
+                person.setStatus(statusField.getText().toString());
+                person.setSex(genderCombox.getSelectedItem().toString());
                 this.driver.addPerson(person);
             }
 

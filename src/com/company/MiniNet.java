@@ -5,6 +5,7 @@ import com.company.model.BasePerson;
 import com.company.model.Child;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,9 @@ public class MiniNet {
     private static Driver driver;
     private static Scanner input;
 
-    private void processConsole() throws Exception{
+    static JPanel currentContentPanel;
+
+    private void processConsole() throws Exception {
 
         while (true) {
             showOptions();
@@ -52,58 +55,50 @@ public class MiniNet {
                         e.printStackTrace();
                     }
                 }
-            }
-            else if (option == 4){
+            } else if (option == 4) {
                 System.out.println("Please provide the name of the person");
                 String name = input.next();
                 BasePerson person = driver.findPersonByName(name);
-                if (person != null){
+                if (person != null) {
                     System.out.println("Please provide the new status");
                     input.nextLine();
                     String status = input.nextLine();
                     person.setStatus(status);
                     System.out.println("Status updated successfully :)");
-                }
-                else {
+                } else {
                     System.out.println("User not found");
                 }
-            }
-            else if (option == 5){
+            } else if (option == 5) {
                 System.out.println("Please provide the name of the person to delete");
                 String name = input.next();
                 BasePerson person = driver.findPersonByName(name);
-                if (person != null){
+                if (person != null) {
                     boolean result = driver.deletePerson(person);
-                    if (result){
+                    if (result) {
                         System.out.println("The person was deleted successfully");
-                    }
-                    else {
+                    } else {
                         System.out.println("User could not be deleted");
                     }
                 }
-            }
-            else if (option == 6){
+            } else if (option == 6) {
                 System.out.println("Please provide the name of the first person");
                 String firstName = input.next();
                 BasePerson firstPerson = driver.findPersonByName(firstName);
-                if (firstPerson != null){
+                if (firstPerson != null) {
                     System.out.println("Please provide the name of the second person");
                     String secondName = input.next();
                     BasePerson secondPerson = driver.findPersonByName(secondName);
                     boolean isFriends = driver.areFriend(firstPerson, secondPerson);
-                    if (isFriends){
+                    if (isFriends) {
                         System.out.println(String.format("%s %s %s %s", firstName, "and ", secondName, " are friends"));
-                    }
-                    else {
+                    } else {
                         System.out.println("These two people are not connected");
                     }
                 }
-            }
-            else if (option == 0) {
+            } else if (option == 0) {
                 System.out.println("Thank you for using my social network");
                 System.exit(0);
-            }
-            else {
+            } else {
                 System.out.println("Invalid Option. Please select a valid option from 1 - 6");
             }
         }
@@ -115,15 +110,45 @@ public class MiniNet {
         driver = new Driver();
 
 
-        AddPersonForm form = new AddPersonForm(driver);
+        currentContentPanel = new AddPersonForm(driver).getPanel();
 
-        JFrame frame = new JFrame("Social Media");
-        frame.setContentPane(form.getPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(480, 360);
-        frame.pack();
-        frame.setVisible(true);
+        MainMenuForm menuPanel = new MainMenuForm(driver);
+        menuPanel.attachPersonSelectedListener(person -> {
+            PersonDetailsView view = new PersonDetailsView(person);
+            replacePanel(view);
+        });
+        menuPanel.getMainPanel().setSize(600, 100);
+        menuPanel.attachListener(panel -> {
+            if (panel != null) {
+                panel.setSize(currentContentPanel.getSize());
+                replacePanel(panel);
+            }
+        });
 
+        JPanel mainPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
+        mainPanel.setLayout(boxLayout);
+
+        mainPanel.add(menuPanel.getMainPanel());
+        mainPanel.add(currentContentPanel);
+
+        MainFrame frame = new MainFrame(driver);
+        frame.run(mainPanel);
+    }
+
+    public static void replacePanel(JPanel newJPanel) {
+        Container parent = currentContentPanel.getParent();
+        int index = parent.getComponentZOrder(currentContentPanel);
+        // remove the old edition of the panel
+        parent.remove(currentContentPanel);
+        // generate the replacement panel
+        currentContentPanel = newJPanel;
+        // place the replacement panel in the same relative location as the one it is replacing
+        parent.add(currentContentPanel, index);
+
+        // must call both of these, in the correct order
+        parent.validate();
+        parent.repaint();
     }
 
 
@@ -136,7 +161,7 @@ public class MiniNet {
                 return null;
             }
 
-            BasePerson person =  driver.findPersonByName(personName);
+            BasePerson person = driver.findPersonByName(personName);
             if (person == null) {
                 System.out.println("No parent was found with that name. Please try again later");
             } else if (person.getAge() < 16) {
