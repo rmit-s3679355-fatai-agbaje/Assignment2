@@ -6,6 +6,7 @@ import com.company.model.Child;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,6 +16,12 @@ public class MiniNet {
     private static Scanner input;
 
     static JPanel currentContentPanel;
+
+    public static List<BasePerson> runFileManager () throws Exception{
+        FileManager fileManager = new FileManager(new ArrayList<BasePerson>());
+        System.out.println(fileManager.people);
+        return fileManager.people;
+    }
 
     private void processConsole() throws Exception {
 
@@ -39,9 +46,9 @@ public class MiniNet {
                 System.out.println("Please what is this person's age");
                 int age = input.nextInt();
                 if (age < 16) {
-                    BasePerson person1 = getParentForChild(name, "Please provide the name of the first parent\nPlease enter '.' to abort");
+                    Adult person1 = getParentForChild(name, "Please provide the name of the first parent\nPlease enter '.' to abort");
                     if (person1 != null) {
-                        BasePerson person2 = getParentForChild(name, "Please provide the name of the second parent\nPlease enter '.' to abort");
+                        Adult person2 = getParentForChild(name, "Please provide the name of the second parent\nPlease enter '.' to abort");
                         if (person2 != null) {
                             Child child = new Child(name, age, person1, person2);
                             driver.addPerson(child);
@@ -106,8 +113,11 @@ public class MiniNet {
 
     public static void main(String[] args) throws Exception {
 
+        List<BasePerson> people = runFileManager();
+
         input = new Scanner(System.in);
         driver = new Driver();
+        driver.addPeople(people);
 
         currentContentPanel = new HomePanel();
 
@@ -151,7 +161,7 @@ public class MiniNet {
     }
 
 
-    public static BasePerson getParentForChild(String name, String dialog) {
+    public static Adult getParentForChild(String name, String dialog) {
         while (true) {
             System.out.println(dialog);
             String personName = input.next();
@@ -166,7 +176,7 @@ public class MiniNet {
             } else if (person.getAge() < 16) {
                 System.out.println("You cannot add " + person.getName() + " as a parent for " + name);
             } else {
-                return person;
+                return (Adult) person;
             }
         }
     }

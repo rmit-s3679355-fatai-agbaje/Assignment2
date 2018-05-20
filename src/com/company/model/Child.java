@@ -4,19 +4,24 @@ import com.company.UserType;
 import com.company.exception.NotToBeClassmatesException;
 import com.company.exception.NotToBeColleaguesException;
 import com.company.exception.NotToBeFriendsException;
+import com.company.exception.TooYoungException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Child extends BasePerson {
 
-    private BasePerson[] parents;
+    private List<Adult> parents = new ArrayList<Adult>(2);
 
-    public Child(String name, int age, BasePerson... parents) throws Exception {
+    public Child(String name, int age, Adult... parents) throws Exception {
         super(name, age);
         setUserType(UserType.CHILD);
         this.setParents(parents);
     }
 
-    public boolean setParents(BasePerson... parents) throws Exception {
-        if (parents.length == 2) {
+    public boolean setParents(Adult... parents) throws Exception {
+        if (parents != null && parents.length == 2) {
             for (BasePerson parent : parents) {
                 if (parent.getAge() < 16) {
                     return false;
@@ -25,7 +30,7 @@ public class Child extends BasePerson {
 
             parents[0].addFriend(parents[1]);
             parents[1].addFriend(parents[0]);
-            this.parents = parents;
+            this.parents.addAll(Arrays.asList(parents));
             return true;
         }
         else {
@@ -34,7 +39,15 @@ public class Child extends BasePerson {
         }
     }
 
-    public BasePerson[] getParents() {
+
+    public boolean addParent(Adult adult){
+        if (this.parents == null || this.parents.size() < 2){
+            return this.parents.add(adult) & adult.addChild(this);
+        }
+        return false;
+    }
+
+    public List<Adult> getParents() {
         return parents;
     }
 
@@ -48,11 +61,14 @@ public class Child extends BasePerson {
         if (age > 16){
             throw new Exception("A child cannot have his/her age greater than 16");
         }
+        else if (age < 2){
+            throw new Exception("A child cannot have his/her age less than 2");
+        }
         super.setAge(age);
     }
 
     @Override
-    public boolean addFriend(BasePerson person) throws NotToBeFriendsException {
+    public boolean addFriend(BasePerson person) throws NotToBeFriendsException, TooYoungException {
         if (this.getAge() < 2 || person.getAge() < 2){
             return false;
         }

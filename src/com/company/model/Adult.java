@@ -33,6 +33,23 @@ public class Adult extends BasePerson {
         return children;
     }
 
+    public boolean removeChild(Child child) {
+        if (this.children != null && this.children.size() > 0) {
+            return this.children.remove(child);
+        }
+        return false;
+    }
+
+    public boolean addChild(Child child){
+        if (this.children == null){
+            this.children.add(child);
+        }
+        if (!this.children.contains(child)){
+            return this.children.add(child);
+        }
+        return false;
+    }
+
     public Adult getPartner() {
         return partner;
     }
@@ -44,13 +61,6 @@ public class Adult extends BasePerson {
             this.addFriend(partner);
             this.partner = partner;
         }
-    }
-
-    public boolean removeChild(Child child) {
-        if (this.children != null && this.children.size() > 0) {
-            return this.children.remove(child);
-        }
-        return false;
     }
 
     @Override

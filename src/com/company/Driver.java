@@ -3,6 +3,7 @@ package com.company;
 import com.company.model.Adult;
 import com.company.model.BasePerson;
 import com.company.model.Child;
+import com.sun.xml.internal.rngom.parse.host.Base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,7 @@ class Driver {
 
     public Driver() {
         allPeople = new ArrayList<BasePerson>();
-
         this.addDefaultPeople();
-
     }
 
     public void addDefaultPeople() {
@@ -37,10 +36,13 @@ class Driver {
             allPeople.add(new Adult("Desmond", 80));
             allPeople.add(new Adult("Daniel", 35));
             allPeople.add(new Adult("Tutu", 39));
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("An error occurred.");
         }
+    }
+
+    public void addPeople(List<BasePerson> people) {
+        this.allPeople.addAll(people);
     }
 
     public void addPerson(BasePerson person) {
@@ -51,7 +53,7 @@ class Driver {
         return person1.addFriend(person2) && person2.addFriend(person1);
     }
 
-    public boolean addParents(Child child, BasePerson parent1, BasePerson parent2) throws Exception {
+    public boolean addParents(Child child, Adult parent1, Adult parent2) throws Exception {
         return child.setParents(parent1, parent2);
     }
 
@@ -76,15 +78,13 @@ class Driver {
         System.out.println(profileInformation);
     }
 
-
     public boolean deletePerson(BasePerson person) {
         int index = this.allPeople.indexOf(person);
         if (index > -1) {
 
             if (person instanceof Child) {
                 Child child = (Child) person;
-                Adult[] adults = (Adult[]) child.getParents();
-                for (Adult adult : adults) {
+                for (Adult adult : child.getParents()) {
                     adult.removeChild(child);
                 }
             } else if (person instanceof Adult) {

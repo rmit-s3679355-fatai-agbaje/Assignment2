@@ -105,7 +105,7 @@ public abstract class BasePerson {
 
     public void setState(String state) throws InvalidStateException {
         String[] validEntries = new String[]{"ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"};
-        if (Arrays.asList(validEntries).indexOf(state) > -1) {
+        if (Arrays.asList(validEntries).indexOf(state.trim()) > -1) {
             this.state = state;
         } else {
             throw new InvalidStateException(state);

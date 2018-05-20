@@ -16,6 +16,7 @@ public class AddPersonForm {
     private JPanel panel;
     private JTextField statusField;
     private JComboBox genderCombox;
+    private JTextField stateField;
 
     public AddPersonForm(Driver driver) {
         this.driver = driver;
@@ -35,6 +36,7 @@ public class AddPersonForm {
                 BasePerson person = new Adult(name, age, null);
                 person.setStatus(statusField.getText().toString());
                 person.setSex(genderCombox.getSelectedItem().toString());
+                person.setStatus(stateField.getText());
                 this.driver.addPerson(person);
             }
 

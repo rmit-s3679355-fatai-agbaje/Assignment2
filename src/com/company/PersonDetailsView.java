@@ -1,6 +1,8 @@
 package com.company;
 
+import com.company.model.Adult;
 import com.company.model.BasePerson;
+import com.company.model.Child;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,17 +26,32 @@ public class PersonDetailsView extends JPanel {
         JLabel ageLabel = new JLabel("Age:\n" + person.getAge());
         JLabel statusLabel = new JLabel("Status:\n" + person.getStatus());
         JLabel sexLabel = new JLabel("Sex:\n" + person.getSex());
+        JLabel noImageLabel = new JLabel("No image available");
 
-        String imageUrl = person.getImage() != null ? person.getImage() : "sample_image.jpeg";
-        File f = new File(imageUrl);
-        JLabel imgLabel = new JLabel(new ImageIcon(f.getName()));
-        imgLabel.setSize(200, 200);
+        String imageUrl = person.getImage();
+        if (imageUrl != null) {
+            File f = new File(imageUrl);
+            JLabel imgLabel = new JLabel(new ImageIcon(f.getName()));
+            imgLabel.setSize(200, 200);
+            this.add(imgLabel);
+        }
+        else {
+            this.add(noImageLabel);
+        }
+
+        if (this.person instanceof Child){
+            java.util.List<Adult> parents = ((Child) person).getParents();
+            if (parents != null){
+                JLabel parentsLabel = new JLabel("Parents: "+parents.toString());
+                this.add(parentsLabel);
+            }
+        }
+
 
         this.add(nameLabel);
         this.add(ageLabel);
         this.add(statusLabel);
         this.add(sexLabel);
-        this.add(imgLabel);
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
