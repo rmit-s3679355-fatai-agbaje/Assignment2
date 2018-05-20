@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fffc829-f8be-466a-aa1d-4dc05ba274dc" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/people.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/relations.txt" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/AddPersonForm.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/AddPersonForm.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/Driver.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/Driver.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/FileManager.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/FileManager.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/MiniNet.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/MiniNet.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/exception/TooYoungException.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/exception/TooYoungException.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/model/Adult.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/model/Adult.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/model/Child.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/model/Child.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/company/model/YoungChild.class" afterPath="$PROJECT_DIR$/out/production/Assignment/com/company/model/YoungChild.class" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/AddPersonForm.form" afterPath="$PROJECT_DIR$/src/com/company/AddPersonForm.form" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/AddPersonForm.java" afterPath="$PROJECT_DIR$/src/com/company/AddPersonForm.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Driver.java" afterPath="$PROJECT_DIR$/src/com/company/Driver.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/FileManager.java" afterPath="$PROJECT_DIR$/src/com/company/FileManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/MiniNet.java" afterPath="$PROJECT_DIR$/src/com/company/MiniNet.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/PersonDetailsView.java" afterPath="$PROJECT_DIR$/src/com/company/PersonDetailsView.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/exception/TooYoungException.java" afterPath="$PROJECT_DIR$/src/com/company/exception/TooYoungException.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/model/Adult.java" afterPath="$PROJECT_DIR$/src/com/company/model/Adult.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/model/BasePerson.java" afterPath="$PROJECT_DIR$/src/com/company/model/BasePerson.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/model/Child.java" afterPath="$PROJECT_DIR$/src/com/company/model/Child.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/model/YoungChild.java" afterPath="$PROJECT_DIR$/src/com/company/model/YoungChild.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,19 +17,34 @@
       <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="229">
+              <caret line="34" column="33" lean-forward="true" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MiniNet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MiniNet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/MiniNet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="181" column="5" lean-forward="true" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
+            <state relative-caret-position="456">
+              <caret line="129" column="43" lean-forward="true" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Driver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding>
+                <element signature="e#1408#1409#0" expanded="true" />
+                <element signature="e#1453#1454#0" expanded="true" />
+                <element signature="e#1501#1502#0" expanded="true" />
+                <element signature="e#1543#1544#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,10 +123,10 @@
         <option value="$PROJECT_DIR$/people.txt" />
         <option value="$PROJECT_DIR$/src/com/company/model/BasePerson.java" />
         <option value="$PROJECT_DIR$/src/com/company/model/Child.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Driver.java" />
         <option value="$PROJECT_DIR$/src/com/company/MiniNet.java" />
         <option value="$PROJECT_DIR$/relations.txt" />
         <option value="$PROJECT_DIR$/src/com/company/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Driver.java" />
       </list>
     </option>
   </component>
@@ -834,32 +828,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Driver.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/MiniNet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="43" column="25" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="25" />
-          <folding>
-            <element signature="e#1459#1460#0" expanded="true" />
-            <element signature="e#1504#1505#0" expanded="true" />
-            <element signature="e#1552#1553#0" expanded="true" />
-            <element signature="e#1594#1595#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="456">
+          <caret line="129" column="43" lean-forward="true" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="229">
+          <caret line="34" column="33" lean-forward="true" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/MiniNet.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="181" column="5" lean-forward="true" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#1408#1409#0" expanded="true" />
+            <element signature="e#1453#1454#0" expanded="true" />
+            <element signature="e#1501#1502#0" expanded="true" />
+            <element signature="e#1543#1544#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
